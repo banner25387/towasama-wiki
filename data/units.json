@@ -2,7 +2,7 @@
   "table": "ユニットリスト",
   "slug": "units",
   "source": "舊彙整/重建/表/ユニットリスト.csv",
-  "generated_at": "2026-07-09T20:41:12+08:00",
+  "generated_at": "2026-07-11T00:51:19+08:00",
   "fields": [
     "ユニット名",
     "HushTag",

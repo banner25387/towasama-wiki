@@ -2,7 +2,7 @@
   "table": "コラボメンバー一覧",
   "slug": "collaborators",
   "source": "舊彙整/重建/表/コラボメンバー一覧.csv",
-  "generated_at": "2026-07-09T20:41:12+08:00",
+  "generated_at": "2026-07-11T00:51:19+08:00",
   "fields": [
     "名前",
     "Twitch",
