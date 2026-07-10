@@ -1,0 +1,24 @@
+{
+  "table": "未解決事件は終わらせないといけないから",
+  "slug": "unfinished_cases",
+  "source": "舊彙整/重建/表/未解決事件は終わらせないといけないから.csv",
+  "generated_at": "2026-07-09T20:41:12+08:00",
+  "fields": [
+    "Name",
+    "Number",
+    "配信リンク"
+  ],
+  "row_count": 2,
+  "rows": [
+    {
+      "Name": "【未解決事件は終わらせないといけないから】事件を解決！🔍✨【常闇トワ/ホロライブ】",
+      "Number": "1",
+      "配信リンク": "https://www.youtube.com/live/laaBp8cPsgI?si=X8ymWk0GDXbJuett"
+    },
+    {
+      "Name": "【未解決事件は終わらせないといけないから】真実とは…記憶をつなぎ合わせて解決　PART２【常闇トワ/ホロライブ】",
+      "Number": "2",
+      "配信リンク": "https://www.youtube.com/live/wDrdFbgCbZk?si=rOSE8mkKjf-pVCDw"
+    }
+  ]
+}

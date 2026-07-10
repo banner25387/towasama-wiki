@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-09T20:41:12+08:00",
+  "tables": [
+    {
+      "table": "配信記録",
+      "slug": "streams",
+      "fields": [
+        "Name",
+        "Date",
+        "ゲーム",
+        "コラボメンバー",
+        "ソロ/コラボ",
+        "タイプ",
+        "チャンネル",
+        "再生リスト",
+        "配信リンク"
+      ]
+    },
+    {
+      "table": "ゲームリスト",
+      "slug": "games",
+      "fields": [
+        "ゲーム名",
+        "タイプ"
+      ]
+    },
+    {
+      "table": "コラボメンバー一覧",
+      "slug": "collaborators",
+      "fields": [
+        "名前",
+        "Twitch",
+        "X",
+        "YouTube",
+        "グループ",
+        "所属"
+      ]
+    },
+    {
+      "table": "テーマ再生リスト",
+      "slug": "themes",
+      "fields": [
+        "Name",
+        "キーワード",
+        "ゲーム",
+        "コラボメンバー",
+        "チーム名",
+        "ハッシュタグ",
+        "再生リスト【Youtube】",
+        "大会",
+        "配信タイプ"
+      ]
+    },
+    {
+      "table": "ユニットリスト",
+      "slug": "units",
+      "fields": [
+        "ユニット名",
+        "HushTag",
+        "メンバー"
+      ]
+    },
+    {
+      "table": "未解決事件は終わらせないといけないから",
+      "slug": "unfinished_cases",
+      "fields": [
+        "Name",
+        "Number",
+        "配信リンク"
+      ]
+    },
+    {
+      "table": "獅白杯_スト6",
+      "slug": "shishiro_cup_sf6",
+      "fields": [
+        "Name",
+        "Number",
+        "配信リンク"
+      ]
+    }
+  ],
+  "md_pages_included": false
+}

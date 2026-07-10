@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-09T20:41:12+08:00",
+  "source": "舊彙整/重建/表",
+  "tables": [
+    {
+      "table": "配信記録",
+      "slug": "streams",
+      "json": "streams.json",
+      "title_field": "Name",
+      "row_count": 412,
+      "fields": [
+        "Name",
+        "Date",
+        "ゲーム",
+        "コラボメンバー",
+        "ソロ/コラボ",
+        "タイプ",
+        "チャンネル",
+        "再生リスト",
+        "配信リンク"
+      ]
+    },
+    {
+      "table": "ゲームリスト",
+      "slug": "games",
+      "json": "games.json",
+      "title_field": "ゲーム名",
+      "row_count": 52,
+      "fields": [
+        "ゲーム名",
+        "タイプ"
+      ]
+    },
+    {
+      "table": "コラボメンバー一覧",
+      "slug": "collaborators",
+      "json": "collaborators.json",
+      "title_field": "名前",
+      "row_count": 117,
+      "fields": [
+        "名前",
+        "Twitch",
+        "X",
+        "YouTube",
+        "グループ",
+        "所属"
+      ]
+    },
+    {
+      "table": "テーマ再生リスト",
+      "slug": "themes",
+      "json": "themes.json",
+      "title_field": "Name",
+      "row_count": 27,
+      "fields": [
+        "Name",
+        "キーワード",
+        "ゲーム",
+        "コラボメンバー",
+        "チーム名",
+        "ハッシュタグ",
+        "再生リスト【Youtube】",
+        "大会",
+        "配信タイプ"
+      ]
+    },
+    {
+      "table": "ユニットリスト",
+      "slug": "units",
+      "json": "units.json",
+      "title_field": "ユニット名",
+      "row_count": 10,
+      "fields": [
+        "ユニット名",
+        "HushTag",
+        "メンバー"
+      ]
+    },
+    {
+      "table": "未解決事件は終わらせないといけないから",
+      "slug": "unfinished_cases",
+      "json": "unfinished_cases.json",
+      "title_field": "Name",
+      "row_count": 2,
+      "fields": [
+        "Name",
+        "Number",
+        "配信リンク"
+      ]
+    },
+    {
+      "table": "獅白杯_スト6",
+      "slug": "shishiro_cup_sf6",
+      "json": "shishiro_cup_sf6.json",
+      "title_field": "Name",
+      "row_count": 10,
+      "fields": [
+        "Name",
+        "Number",
+        "配信リンク"
+      ]
+    }
+  ]
+}
