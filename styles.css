@@ -5,9 +5,9 @@
   color-scheme: light;
   --bg: #ffffff;
   --sidebar-bg: #f7f7f5;
-  --text: rgb(55, 53, 47);
-  --muted: rgba(55, 53, 47, 0.65);
-  --faint: rgba(55, 53, 47, 0.45);
+  --text: rgb(40, 38, 34);
+  --muted: rgba(40, 38, 34, 0.78);
+  --faint: rgba(40, 38, 34, 0.58);
   --line: #e9e9e7;
   --hover: rgba(55, 53, 47, 0.06);
   --active: rgba(55, 53, 47, 0.1);
@@ -38,7 +38,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.5;
 }
 
@@ -190,21 +190,22 @@ a { color: inherit; }
   letter-spacing: 0.01em;
 }
 .page-props {
+  /* 2026-07-19 沛核可：屬性區塊由直式卡片壓成一行小字，騰出縱向空間（資訊保留） */
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 28px;
-  margin: 14px 0 4px;
-  padding-bottom: 14px;
+  gap: 2px 20px;
+  margin: 6px 0 2px;
+  padding-bottom: 6px;
   border-bottom: 1px solid var(--line);
-  font-size: 13.5px;
+  font-size: 12px;
 }
-.prop { min-width: 130px; }
+.prop { min-width: 0; display: flex; align-items: baseline; gap: 6px; }
 .prop-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   color: var(--faint);
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 .prop-value { color: var(--muted); }
 .prop-value.is-empty { color: var(--faint); }
@@ -236,7 +237,7 @@ a { color: inherit; }
 .toolbar {
   max-width: 1260px;
   margin: 0 auto;
-  padding: 10px 56px;
+  padding: 6px 56px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -246,7 +247,7 @@ a { color: inherit; }
 .filter-bar {
   max-width: 1260px;
   margin: 0 auto;
-  padding: 10px 56px 0;
+  padding: 6px 56px 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -278,12 +279,62 @@ a { color: inherit; }
   background: transparent;
   font-size: 12.5px;
   color: inherit;
-  max-width: 220px;
+  max-width: 150px;
   cursor: pointer;
 }
 
+/* ---------- T1b／A1・A2・C：配信記録の年／タイプ chip（.filter-select の見た目を流用） ---------- */
+.filter-bar-chips { gap: 4px; }
+/* display:contents：拿掉群組自己的盒子，讓每顆 chip 變成 .filter-bar-chips 的直接 flex 子項，
+   靠外層的 flex-wrap 逐顆換行（原本 inline-flex 巢狀盒在窄螢幕會整組不縮、把其他撐出可視範圍） */
+.filter-chip-group { display: contents; }
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 2px 10px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+.filter-chip:hover { background: var(--hover); }
+.filter-chip.active {
+  border-color: rgba(35, 131, 226, 0.5);
+  background: rgba(35, 131, 226, 0.08);
+  color: rgb(24, 51, 71);
+}
+.filter-divider { width: 1px; height: 16px; background: var(--line); margin: 0 4px; }
+
+/* ---------- T1b／A5：選択中 pill（.tag のグレー底色を流用） ---------- */
+.filter-selected {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 4px 56px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 7px;
+  border-radius: 3px;
+  font-size: 12.5px;
+  line-height: 20px;
+  background: var(--tag-gray-bg);
+  color: var(--tag-gray-fg);
+}
+.pill-remove { font-size: 11px; opacity: 0.7; }
+.pill-remove:hover { opacity: 1; }
+
 @media (max-width: 900px) {
   .filter-bar { padding-left: 20px; padding-right: 20px; }
+  .filter-selected { padding-left: 20px; padding-right: 20px; }
 }
 .table-filter {
   display: flex;
@@ -299,6 +350,9 @@ a { color: inherit; }
   font-size: 13.5px;
 }
 .table-filter input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(35, 131, 226, 0.2); }
+/* T1b／A3・C：ゲーム・コラボメンバー の datalist 輸入框，寬 200px、不隨 flex 伸縮 */
+.table-filter.field-filter { flex: 0 0 auto; }
+.table-filter.field-filter input { width: 200px; }
 .text-button {
   font-size: 13px;
   color: var(--muted);
@@ -313,24 +367,41 @@ a { color: inherit; }
   max-width: 1260px;
   margin: 0 auto;
   padding: 0 56px 24px;
-  overflow-x: auto;
+  /* 2026-07-19 沛核可（沙盒驗證後移植）：捲動容器限制在視窗高度內，
+     水平捲軸永遠在可視底部；配合 thead sticky，垂直捲動欄名不消失。 */
+  overflow: auto;
+  max-height: calc(100vh - 300px);
+}
+.table-shell thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  box-shadow: inset 0 -1px 0 var(--line);
 }
 table {
-  border-collapse: collapse;
+  /* collapse 模式下 Chrome 的 thead sticky 失效（知名 bug），
+     改 separate＋spacing 0，格線改單邊 border-bottom，視覺不變。 */
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
   font-size: 14px;
+  /* T1／A7：欄寬固定＝欄名→寬度對照表（app.js columnWidths）透過 headerCell() 的
+     inline style="width:...px" 灌進表頭第一列儲存格，fixed 版面演算法據此定寬。 */
+  table-layout: fixed;
 }
 th, td {
-  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 7px 9px;
   text-align: left;
   vertical-align: top;
   max-width: 340px;
+  /* T1／A4：一列一行，超出用省略號（見 .cell-truncate），不再多行截斷 */
+  white-space: nowrap;
 }
 th {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--faint);
   white-space: nowrap;
   border-top: none;
@@ -346,10 +417,11 @@ th .sort-button {
 th .sort-button:hover { background: var(--hover); color: var(--muted); }
 tbody tr:hover { background: rgba(55, 53, 47, 0.03); }
 .cell-truncate {
+  /* T1／A4：改單行省略（原本 2 行 line-clamp），hover 看 title 全文 */
+  display: block;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 td a { color: var(--muted); text-decoration: none; border-bottom: 1px solid rgba(55,53,47,0.25); }
 td a:hover { color: var(--text); }
@@ -359,6 +431,12 @@ td a:hover { color: var(--text); }
   color: var(--text);
   text-align: left;
   line-height: 1.4;
+  /* T1／A4：與 .cell-truncate 一致的單行省略（title-cell 是 button，需自帶 block+nowrap） */
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .title-cell:hover { border-bottom: 1px solid rgba(55, 53, 47, 0.4); }
 .title-cell .row-icon { margin-right: 6px; }
@@ -369,7 +447,7 @@ td a:hover { color: var(--text); }
   display: inline-block;
   padding: 0 7px;
   border-radius: 3px;
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 20px;
   white-space: nowrap;
   background: var(--tag-default-bg);
@@ -399,6 +477,9 @@ td a:hover { color: var(--text); }
 }
 .chip:hover { background: var(--hover); }
 .chip::before { content: "📄"; font-size: 12px; opacity: 0.7; }
+/* T1／B1：表格列「＋N」合成 chip（コラボメンバー等超過 3 人時），無圖示、色弱化區分 */
+.chip-more { color: var(--faint); font-weight: 500; }
+.chip-more::before { content: none; }
 
 /* ---------- カレンダー ---------- */
 .calendar-wrap {
@@ -446,7 +527,7 @@ td a:hover { color: var(--text); }
   background: #fff;
 }
 .cal-cell {
-  min-height: 108px;
+  min-height: 96px;
   padding: 4px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -469,7 +550,7 @@ td a:hover { color: var(--text); }
   display: block;
   width: 100%;
   text-align: left;
-  font-size: 11.5px;
+  font-size: 12px;
   line-height: 1.35;
   padding: 2px 5px;
   border-radius: 3px;
@@ -631,4 +712,113 @@ td a:hover { color: var(--text); }
   .page-head, .toolbar, .table-shell, .calendar-wrap, .home-grid,
   .record, .view-tabs, .back-line, .section-heading { padding-left: 20px; padding-right: 20px; }
   .record { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   T1 改版（2026-09-05，TWS-20260905-04）
+   內頁（表頁／行事曆／詳情）壓縮版頭，讓「讀資料」優先；
+   首頁（.page-cover.photo）不在下列選擇器命中範圍內，逐位元組視覺不變。
+   ============================================================ */
+
+/* ---------- A1：內頁 cover 壓成 56px 色帶（首頁 .page-cover.photo 不受影響） ---------- */
+.page-cover:not(.photo) {
+  height: 56px;
+  justify-content: flex-start;
+  padding-left: 56px;
+}
+.page-cover:not(.photo) .cover-word {
+  font-size: 34px;
+}
+
+/* ---------- A2：內頁 page-head 壓成一行（icon 28px＋標題 22px）；page-props 隱藏
+   （用「跟在非首頁 cover 後面的 page-head」做範圍，首頁的 page-head 不命中、維持原樣） ---------- */
+.page-cover:not(.photo) + .page-head {
+  padding: 10px 56px 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.page-cover:not(.photo) + .page-head .page-icon {
+  font-size: 28px;
+  margin-top: 0;
+  line-height: 1;
+}
+.page-cover:not(.photo) + .page-head .page-title {
+  font-size: 22px;
+  margin: 0;
+}
+.page-cover:not(.photo) + .page-head .page-props {
+  display: none;
+}
+
+/* ---------- A4（補）：tags／chips 不換行、溢出隱藏——限「表格列」內，
+   詳情頁沿用同一批 class（.tags／.chips）需保留原本可換行、全部顯示，故不能改全域基底規則 ---------- */
+.table-shell .tags,
+.table-shell .chips {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.table-shell .tag {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.table-shell .chip {
+  /* 一般 chip 允許被壓縮＋各自省略號，讓固定欄寬內盡量多顯示幾個名字；
+     「＋N」（.chip-more）永遠不縮、優先保留可見可點 */
+  min-width: 24px;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.table-shell .chip-more {
+  flex-shrink: 0;
+}
+
+/* ---------- A5：Name（第一欄）欄凍結，橫捲不丟對象 ---------- */
+table th:first-child,
+table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 1px 0 0 var(--line);
+}
+table thead th:first-child {
+  z-index: 3; /* 高於一般 thead th（z-index:2）與凍結 td（z-index:1），四角都不被蓋住 */
+}
+tbody tr:hover td:first-child {
+  background: rgba(55, 53, 47, 0.03); /* 跟隨 tbody tr:hover 的列底色，凍結格不脫色 */
+}
+
+/* ---------- A10：手機（≤900px）內頁 cover 進一步縮到 40px；加側欄切換鈕 ---------- */
+.menu-toggle {
+  display: none;
+}
+@media (max-width: 900px) {
+  .page-cover:not(.photo) {
+    height: 40px;
+  }
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    border-radius: var(--radius);
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .menu-toggle:hover {
+    background: var(--hover);
+  }
+  .sidebar.mobile-open {
+    display: flex;
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    height: 100vh;
+    box-shadow: 2px 0 16px rgba(0, 0, 0, 0.18);
+  }
 }

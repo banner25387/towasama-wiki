@@ -26,6 +26,7 @@
 
       <div class="main">
         <header class="topbar">
+          <button class="menu-toggle" type="button" id="menuToggle" aria-label="メニュー">☰</button>
           <div class="breadcrumb" id="breadcrumb"></div>
           <div class="topbar-meta" id="topbarMeta"></div>
         </header>
@@ -36,5 +37,11 @@
     </div>
 
     <script src="app.js?v=4" defer></script>
+    <!-- T1／A10：手機側欄切換，純 CSS class toggle，與 app.js 無關（不動路由／篩選等邏輯） -->
+    <script>
+      document.querySelector("#menuToggle").addEventListener("click", () => {
+        document.querySelector(".sidebar").classList.toggle("mobile-open");
+      });
+    </script>
   </body>
 </html>
